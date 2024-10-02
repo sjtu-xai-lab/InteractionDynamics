@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNN Research Paper</title>
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+
+
+    <script src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.js"></script>
+    <script src="static/js/bulma-slider.js"></script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</head>
+
+<body>
+<header>
+    <h1 class="title is-1 publication-title has-text-centered">Two-Phase Dynamics of Interactions Explains the Starting Point of a DNN Learning Over-Fitted Features</h1>
+    <p>
+        <a class="team-member" href="www.JunpengZhang.com">Junpeng Zhang <sup>1</sup></a>,
+        <a class="team-member" href="www.QingLi.com">Qing Li <sup>2</sup></a>,
+        <a class="team-member" href="www.LiangLin.com">Liang Lin <sup>3</sup></a>,
+        <a class="team-member" href="www.QuanshiZhang.com">Quanshi Zhang <sup>1</sup></a>
+    </p>
+    <p><a class="team-member" href="#"><sup>1</sup> Shanghai Jiao Tong University</a>
+        <br><a class="team-member" href="#"><sup>2</sup> Beijing Institute for General Artificial Intelligence</a>
+        <br><a class="team-member" href="#"> <sup>3</sup> Sun Yat-Sen University</a>
+    </p>
+    <p>(† Correspondence)</p>
+    <p>arXiv preprint arXiv:2405.10262</p>
+
+    <br>
+    <br>
+
+    <h1 class="title is-1 publication-title has-text-centered">
+        Towards the Dynamics of a DNN Learning Symbolic Interactions
+    </h1>
+    <p>
+        <a class="team-member" href="www.JunpengZhang.com">Qihan Ren<sup>1*</sup></a>,
+        <a class="team-member" href="www.QingLi.com">Junpeng Zhang<sup>1*</sup></a>,
+        <a class="team-member" href="www.LiangLin.com">Yang Xu<sup>2</sup></a>,
+        <a class="team-member" href="www.QuanshiZhang.com">Yue Xin<sup>1</sup></a>
+        <a class="team-member" href="www.QuanshiZhang.com">Dongrui Liu<sup>3</sup></a>
+        <a class="team-member" href="www.QuanshiZhang.com">Quanshi Zhang<sup>1†</sup></a>
+    </p>
+
+    <p>
+        <a class="team-member" href="www.JunpengZhang.com"><sup>1</sup>Shanghai Jiao Tong University</a>,
+    </p>
+
+    <p>
+        <a class="team-member" href="#"><sup>2</sup>Zhejiang University</a>
+        <br><a class="team-member" href="#"><sup>3</sup>Shanghai Artificial Intelligence Laboratory</a>
+    </p>
+
+    <p>(* Equal Contribution, † Correspondence)</p>
+    <p>NeurIPS 2024</p>
+
+</header>
+
+<div class="container">
+    <br>
+    <img src="./static/img/figs/fig1.png" >
+    <p>
+        Fig. 1: Overview of the two-phase dynamics of interactions learned by a DNN.
+    </p>
+    <br>
+
+    <h2>Abstract</h2>
+    <div class="content has-text-justified">
+        <p>In this study, we discover and theoretically prove the <span>two-phase dynamics</span> of the symbolic inference patterns
+            encoded by a deep neural network (DNN) during the training process. The two-phase dynamics has been universally
+            observed in various DNNs for different tasks, including tabular data/images/text/3D point cloud classification,
+            and the theoretical dynamics well predicts the real dynamics of the DNNs.</p>
+        <p>The core of this study consists of four aspects:</p>
+
+        <p>
+            &nbsp;&nbsp;&nbsp;<span>1.</span> Recent studies have discovered and proven that a DNN’s detailed inference logic on an input sample can be
+            faithfully explained as a small number of interactions. A set of desirable properties have been proven, such
+            as sparsity, universal matching, and transferability across different samples/models, so that they
+            theoretically guarantee that these interactions can be taken as faithful symbolic primitive inference
+            patterns encoded by the DNN.
+        </p>
+        <p>
+            &nbsp;&nbsp;&nbsp;<span>2.</span> We observe that different DNNs trained on various tasks unanimously learn interactions through two phases:
+
+        </p>
+
+        <ul style="margin-left: 4rem !important;">
+            <li>
+                In the first phase, the DNN removes initial interactions of medium and high complexities, and mainly
+                encodes low-complexity interactions.
+            </li>
+            <li>
+                In the second phase, the DNN gradually learns interactions of increasing complexities.
+            </li>
+        </ul>
+
+
+        <p>
+            &nbsp;&nbsp;&nbsp;<span>3.</span> We theoretically prove the analytic two-phase dynamics of interactions. Experiments show that our theory
+            well predicts the real learning dynamics of various DNNs on different tasks.
+        </p>
+
+        <p>
+            &nbsp;&nbsp;&nbsp;<span>4.</span> We demonstrate that this two-phase dynamics of interactions explains the change of a DNN’s generalization
+            power throughout training from a new perspective.
+        </p>
+
+    </div>
+
+    <hr>
+
+    <h2>Preliminary: interactions as symbolic primitive inference patterns</h2>
+    <div class="content has-text-justified">
+        <p>A DNN does not treat each input variable (e.g., an image patch or a word) independently when conducting
+            inference, but usually encodes interactions between input variables. There are two types of interactions: the
+            <span>AND interaction</span> and the <span>OR interaction</span>. Given an input sample, the network output can be decomposed into the sum
+            of AND interaction and OR interactions:</p>
+
+        <div class="latex">
+            $$
+            v(\boldsymbol{x})=v\left(\boldsymbol{x}_{\emptyset}\right)+\sum_{\emptyset \neq S \subseteq {N}} I_{\text{and}}(S | \boldsymbol{x})+\sum_{\emptyset \neq S \subseteq {N}} I_{\text{or}}(S | \boldsymbol{x}),
+            $$
+
+            where the interaction effects $I_{\text{and}}(S | \boldsymbol{x})$ and $ I_{\text{or}}(S | \boldsymbol{x})$are computed as follows:
+
+
+        </div>
+        <br>
+        <div class="latex">
+            $$
+            \begin{array}{c}
+            I_{\text {and}}(S | \boldsymbol{x})=\sum_{T \subseteq S}(-1)^{|S|-|T|} v_{\text {and}}\left(\boldsymbol{x}_{T}\right), \quad I_{\text {or}}(S | \boldsymbol{x})=-\sum_{T \subseteq S}(-1)^{|S|-|T|} v_{\text {or}}\left(\boldsymbol{x}_{N \setminus T}\right) \\
+            \text { s. t. } v_{\text {and}}\left(\boldsymbol{x}_{T}\right) + v_{\text {or}}\left(\boldsymbol{x}_{T}\right)=v\left(\boldsymbol{x}_{T}\right)
+            \end{array}
+            $$
+        </div>
+
+<!--        <p>Where the interaction effects and are computed as follows:</p>-->
+
+    </div>
+
+    <span>How to understand the physical meaning of AND-OR interactions:</span>
+    <div class="content has-text-justified latex">
+        <p>$I_{\text{and}}(S | \boldsymbol{x})$ measures the numerical effect of the AND relationship encoded by the DNN between input variables in the set $S$. As Fig.2 shows, when the image patches in the set $S_2={x_1=\text{nose}, x_2=\text{tongue}, x_3=\text{cheek}}$ are all present (i.e., not masked), the three patches jointly form a dog-snout pattern and make an effect $I_{\text{and}}(S_2 | \boldsymbol{x})$ to push the network output  $v(\boldsymbol{x})$ towards the dog category. Masking any image patch in $S_2$ will deactivate the AND interaction and remove $I_{\text{and}}(S_2 | \boldsymbol{x})$ from $v(\boldsymbol{x})$. </p>
+        <p>Likewise, $I_{\text{or}}(S | \boldsymbol{x})$ measures the numerical effect of the OR relationship encoded by the DNN between input variables in the set $S$. When one of the patches in $S_1={x_4=\text{spotty region1}, x_5=\text{spotty region2}}$ is present, a speckles pattern is used by the DNN to make an effect $I_{\text{or}}(S_1 | \boldsymbol{x})$ on the network output $v(\boldsymbol{x})$.</p>
+
+        <img src="./static/img/figs/fig2.png" alt="Image description">
+
+        <p>
+            Fig. 2: Illustration of AND-OR interactions encoded by a DNN.
+        </p>
+    </div>
+
+    <h3>
+        The interactions are proven to have several desirable properties:
+    </h3>
+    <div class="content has-text-justified">
+        <ul>
+            <li>
+                <span>Sparsity property:</span> <p>A DNN only encodes a small number of salient interactions on a specific sample, while most interactions are noisy patterns with near-zero effects.</p>
+
+                <br>
+                <img src="./static/img/figs/theorem1.png" alt="">
+                <br>
+            </li>
+            <li>
+                <span>Universal matching property:</span> <p>Given an input sample, the network output on a masked input sample can be well mimicked by the effects of specific interactions, no matter how we randomly mask this sample.</p>
+
+                <br>
+                <img src="./static/img/figs/theorem2.png" alt="">
+                <br>
+            </li>
+
+            <li>
+                <span>Sample-wise/model-wise transferability property:</span> <p>Salient interactions are transferable across different samples in the same category/different models trained for the same task.</p>
+
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>Observation: two-phase dynamics of interactions</h2>
+    <div class="content has-text-justified">
+        <img src="./static/img/figs/fig3.png" alt="Image description">
+        <p>
+            Fig. 3: Illustration of the two-phase dynamics of interactions. The last column shows the temporal change of training-testing loss gap, which is roughly aligned with the two phases.
+        </p>
+        <br>
+
+        <p>We measure the change in the distribution of salient interactions over different orders (complexities) during
+            training, and find that the two-phase dynamics of interactions widely exist on different DNNs trained on various
+            datasets (shown in Fig.3):</p>
+        <ul>
+            <li><span>Before training</span>, a DNN with randomly initialized parameters mainly encodes random, meaningless interactions
+                and exhibits a spindle-shaped distribution of interactions.
+            </li>
+            <li><span>In the first phase</span>, initial interactions of medium and high orders are gradually removed, while the strength
+                of low-order interactions gradually increases. Eventually, the DNN mainly encodes low-order interactions.
+            </li>
+            <li><span>In the second phase</span>, the DNN gradually learns interactions of increasing orders.</li>
+            <li>The two-phase dynamics of interactions is <span>temporally aligned</span> with the gap between the training loss and the
+                testing loss (last column of Fig. 3). We will elaborate on this interesting phenomenon in the last section.
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>Theoretical explanation of the two-phase dynamics</h2>
+    <div class="content has-text-justified">
+        <span style="font-weight: bold">Core assumptions and formulation:</span>
+        <ul>
+            <li>According to the universal matching property, we reformulate the DNN’s inference on a certain sample as a
+                <span>weighted sum of different interaction triggering functions</span>.
+            </li>
+            <li>We assume that the training of a DNN can be viewed as the <span>regression towards a set of potential ground-truth
+                interactions</span>.
+            </li>
+            <li>The training of the DNN is subject to unavoidable parameter noises. The parameters in a randomly initialized
+                DNN contain a large amount of noise, and we assume that this <span>parameter noise gradually decreases during the
+                training process</span>.
+            </li>
+        </ul>
+        <p>In this way, the interaction encoded by the DNN <span style="font-weight: bold">at an intermediate point during training</span> can be formulated as the
+            solution to the following objective:</p>
+        <div class="latex">
+            $$
+            \arg \min_{\boldsymbol{w}} \tilde{L}(\boldsymbol{w}), \quad \tilde{L}(\boldsymbol{w})=\mathbb{E}_{\boldsymbol{\epsilon}} \mathbb{E}_{S \subseteq N}\left[\left(y_{S}-\boldsymbol{w}^{\top}\left(J\left(\boldsymbol{x}_{S}\right)+\boldsymbol{\epsilon}\right)\right)^{2}\right]
+            $$
+
+
+            <ul>
+                <li>
+                    $y_S \overset{\text{def}}{=} y(\boldsymbol{x}_S)= \sum_{T\subseteq S} w^*_T$ is a set of ground-truth interactions that the DNN needs to learn.
+                </li>
+                <li>
+                    $w_T \in \mathbb{R}$ is a scalar weight. $J_T(\boldsymbol{x})$ is the interaction triggering function, which satisfies $J_T(\hat{\boldsymbol{x}}_S)=\mathbb{I}(T \subseteq S)$ on any masked samples $\hat{\boldsymbol{x}}_S$.
+                </li>
+                <li>
+                    $\boldsymbol{\epsilon}$ is the noise on the interaction triggering function, induced by the parameter noise. It satisfies $\mathbb{E}[\epsilon_T]=0, {\rm Var}[\epsilon_T]=2^{|T|} \sigma^2$ (the exponential growth is verified in [1]). As training proceeds, $\sigma^2$ becomes smaller.
+                </li>
+            </ul>
+        </div>
+
+
+        <br>
+        <span>
+            Analytical solution.
+        </span>
+        <p>
+            We find that the theoretical interaction distribution   (derived from ) could well predict the real distribution  at different training epochs.
+        </p>
+
+        <div class="latex">
+            $$
+            \hat{\boldsymbol{w}}=\left(\boldsymbol{J}^{\top} \boldsymbol{J}+2^{n}  {\rm diag}(\boldsymbol{c})\right)^{-1} \boldsymbol{J}^{\top} \boldsymbol{y} =\left(\boldsymbol{J}^{\top} \boldsymbol{J}+2^{n} {\rm diag}(\boldsymbol{c})\right)^{-1} \boldsymbol{J}^{\top} \boldsymbol{J} \boldsymbol{w}^{*}
+            =: \hat{\boldsymbol{M}} \boldsymbol{w}^{*}
+            $$
+        </div>
+
+        <div class="latex">
+            Based on $\hat{\boldsymbol{w}}$, we prove that <span>as training proceeds (i.e., the noise level $\sigma^2$ decreases), the ratio of low-order interaction strength to high-order interaction strength becomes smaller.</span> This explains the second phase in which the DNN gradually learns interactions of increasingly higher orders.
+        </div>
+
+        <div class="latex">
+            <span>Empirical verification.</span> We find that the theoretical interaction distribution $I_{\text{theo}}^{(k)}$  (derived from $\hat{\boldsymbol{w}}$) could well predict the real distribution $I_{\text{real}}^{(k)}$ at different training epochs.
+        </div>
+
+        <img src="./static/img/figs/fig4.png" alt="">
+        <p>
+            Fig. 4: Comparison between the theoretical distribution of interaction strength  and the real distribution of interaction strength  in the second phase.
+        </p>
+    </div>
+
+    <hr>
+    <h2>Explaining the change of generalization power during training</h2>
+    <div class="content has-text-justified">
+        <p>We find that two-phase dynamics of interactions explains how a DNN’s generalization power changes throughout
+            training, from the perspective of symbolic inference patterns encoded by the DNN. We demonstrate this claim from
+            two aspects.</p>
+        <h5>Aspect 1:High-order interactions have weaker generalization power than low-order interactions.</h5>
+
+        <span>Evidence 1:</span><p>x Low-order interactions extracted from training samples and from testing samples are similar to each
+            other, while high-order interactions are dissimilar.</p>
+        <img src="./static/img/figs/fig5.png" alt="Image description">
+        <p>
+            Fig. 5: The Jaccard similarity between interactions extracted from training samples and interactions extracted from testing samples decreases significantly as the order grows.
+        </p>
+
+        <br>
+
+        <span>Evidence 2:</span> <p> a DNN encodes more high-order interactions on OOD (mislabeled) samples than on normal samples.</p>
+        <img src="./static/img/figs/fig6.png" alt="Image description">
+        <p>
+            Fig. 6: The strength of high-order interactions on OOD samples is significantly greater than that on normal samples.
+        </p>
+        <h5>Aspect 2: The two-phase dynamics of interactions is temporally aligned with the gap between the training loss
+            and the testing loss</h5>  <p> (see last column of Fig. 3). I.e., shortly after entering the second phase, the loss gap
+            increases significantly, which is a sign of learning over-fitted features.</p>
+
+        <br>
+        <p>[1] <a href="#">Qihan Ren</a>, <a href="#">Huiqi Deng</a>, <a href="#">Yunuo Chen</a>, <a href="#">Siyu Lou, and Quanshi Zhang</a>.Bayesian Neural Networks Tend to Ignore
+            Complex and Sensitive Concepts. ICML, 2023</p>
+    </div>
+
+    <hr>
+
+    <h2>BibTeX</h2>
+    <pre><code>
+@inproceedings{
+ren2024towards,
+title={Towards the Dynamics of a {DNN} Learning Symbolic Interactions},
+author={Ren, Qihan and Zhang, Junpeng and Xu, Yang and Xin, Yue and Liu, Dongrui and Zhang, Quanshi},
+booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems},
+year={2024},
+}
+        </code></pre>
+
+    <hr>
+
+    <h2>Relevant Work</h2>
+    <div class="relevant-work">
+        <a href="#">Dove: Learning Deformable 3D Objects by Watching Videos. IJCV 2023.</a><br>
+        <a href="#">MagicPony: Learning Articulated 3D Animals in the Wild. CVPR 2023.</a><br>
+        <a href="#">Farm3D: Learning Articulated 3D Animals by Distilling 2D Diffusion. 3DV 2024.</a><br>
+        <a href="#">Ponymation: Learning 3D Animal Motions from Unlabeled Online Videos. Arxiv 2023.</a><br>
+        <a href="#">SAOR: Single-View Articulated Object Reconstruction. Arxiv 2023.</a><br>
+        <a href="#">LASSIE: Learning Articulated Shape from Sparse Image Ensemble via 3D Part Discovery. NeurIPS
+            2022.</a><br>
+        <a href="#">Hi-LASSIE: High-Fidelity Articulated Shape and Skeleton Discovery from Sparse Image Ensemble.
+            CVPR 2023.</a><br>
+        <a href="#">ARTIC3D: Learning Robust Articulated 3D Shapes from Noisy Web Image Collections. NeurIPS
+            2023.</a><br>
+        <a href="#">BANMo: Building Animatable 3D Neural Models from Many Casual Videos. CVPR 2022.</a><br>
+        <a href="#">RAC: Reconstructing Animatable Categories from Videos. CVPR 2023.</a><br>
+    </div>
+</div>
+
+<footer>
+    &copy; 2024 DNN Research. All rights reserved.
+</footer>
+
+
+</body>
+
+</html>
