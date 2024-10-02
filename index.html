@@ -189,7 +189,7 @@
 
     <h2>Observation: two-phase dynamics of interactions</h2>
     <div class="content has-text-justified">
-        <img src="./static/img/figs/fig3.png" alt="Image description">
+        <img src="./static/img/figs/fig3.png" alt="Image description" style="width: 850px;">
         <p>
             Fig. 3: Illustration of the two-phase dynamics of interactions. The last column shows the temporal change of training-testing loss gap, which is roughly aligned with the two phases.
         </p>
@@ -267,6 +267,8 @@
             Based on $\hat{\boldsymbol{w}}$, we prove that <span>as training proceeds (i.e., the noise level $\sigma^2$ decreases), the ratio of low-order interaction strength to high-order interaction strength becomes smaller.</span> This explains the second phase in which the DNN gradually learns interactions of increasingly higher orders.
         </div>
 
+        <br>
+
         <div class="latex">
             <b>Empirical verification.</b> We find that the theoretical interaction distribution $I_{\text{theo}}^{(k)}$  (derived from $\hat{\boldsymbol{w}}$) could well predict the real distribution $I_{\text{real}}^{(k)}$ at different training epochs.
         </div>
@@ -283,7 +285,7 @@
         <p>We find that two-phase dynamics of interactions explains how a DNN’s generalization power changes throughout
             training, from the perspective of symbolic inference patterns encoded by the DNN. We demonstrate this claim from
             two aspects.</p>
-        <h5>Aspect 1: High-order interactions have weaker generalization power than low-order interactions.</h5>
+        <h5>Aspect 1: High-order interactions have weaker generalization power than low-order interactions</h5>
 
         <li>
             <b>Evidence 1:</b> low-order interactions extracted from training samples and from testing samples are similar to each
