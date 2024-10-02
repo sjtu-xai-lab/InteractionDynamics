@@ -157,7 +157,7 @@
         <p><b>How to understand the physical meaning of AND-OR interactions:</b> $I_{\text{and}}(S | \boldsymbol{x})$ measures the numerical effect of the AND relationship encoded by the DNN between input variables in the set $S$. As Fig.2 shows, when the image patches in the set $S_2=\{x_1=\text{nose}, x_2=\text{tongue}, x_3=\text{cheek}\}$ are all present (i.e., not masked), the three patches jointly form a dog-snout pattern and make an effect $I_{\text{and}}(S_2 | \boldsymbol{x})$ to push the network output  $v(\boldsymbol{x})$ towards the dog category. Masking any image patch in $S_2$ will deactivate the AND interaction and remove $I_{\text{and}}(S_2 | \boldsymbol{x})$ from $v(\boldsymbol{x})$. </p>
         <p>Likewise, $I_{\text{or}}(S | \boldsymbol{x})$ measures the numerical effect of the OR relationship encoded by the DNN between input variables in the set $S$. When one of the patches in $S_1=\{x_4=\text{spotty region1}, x_5=\text{spotty region2}\}$ is present, a speckles pattern is used by the DNN to make an effect $I_{\text{or}}(S_1 | \boldsymbol{x})$ on the network output $v(\boldsymbol{x})$.</p>
 
-        <img src="./static/img/figs/fig2.png" alt="Image description">
+        <img src="./static/img/figs/fig2.png" alt="Image description" style="width: 850px;">
 
         <p>
             Fig. 2: Illustration of AND-OR interactions encoded by a DNN.
@@ -172,12 +172,12 @@
             <li>
                 <p><b>Sparsity property:</b> A DNN only encodes a small number of salient interactions on a specific sample, while most interactions are noisy patterns with near-zero effects.</p>
             </li> 
-                <img src="./static/img/figs/theorem1.png" alt="" style="width: 500px;">
+                <img src="./static/img/figs/theorem1.png" alt="" style="width: 650px;">
                             
             <li>
                 <p><b>Universal matching property:</b> Given an input sample, the network output on a masked input sample can be well mimicked by the effects of specific interactions, no matter how we randomly mask this sample.</p>
             </li>
-                <img src="./static/img/figs/theorem2.png" alt="" style="width: 500px;">
+                <img src="./static/img/figs/theorem2.png" alt="" style="width: 650px;">
                 
             <li>
                 <p><b>Sample-wise/model-wise transferability property:</b> Salient interactions are transferable across different samples in the same category/different models trained for the same task.</p>
@@ -271,7 +271,7 @@
             <b>Empirical verification.</b> We find that the theoretical interaction distribution $I_{\text{theo}}^{(k)}$  (derived from $\hat{\boldsymbol{w}}$) could well predict the real distribution $I_{\text{real}}^{(k)}$ at different training epochs.
         </div>
 
-        <img src="./static/img/figs/fig4.png" alt="">
+        <img src="./static/img/figs/fig4.png" alt="" style="width: 850px;">
         <p>
             Fig. 4: Comparison between the theoretical distribution of interaction strength  and the real distribution of interaction strength  in the second phase.
         </p>
@@ -289,7 +289,7 @@
             <b>Evidence 1:</b> low-order interactions extracted from training samples and from testing samples are similar to each
             other, while high-order interactions are dissimilar.
         </li>
-        <img src="./static/img/figs/fig5.png" alt="Image description">
+        <img src="./static/img/figs/fig5.png" alt="Image description" style="width: 850px;">
         <p>
             Fig. 5: The Jaccard similarity between interactions extracted from training samples and interactions extracted from testing samples decreases significantly as the order grows.
         </p>
@@ -299,7 +299,7 @@
         <li>
             <b>Evidence 2:</b> a DNN encodes more high-order interactions on OOD (mislabeled) samples than on normal samples.
         </li>
-        <img src="./static/img/figs/fig6.png" alt="Image description">
+        <img src="./static/img/figs/fig6.png" alt="Image description" style="width: 850px;">
         <p>
             Fig. 6: The strength of high-order interactions on OOD samples is significantly greater than that on normal samples.
         </p>
