@@ -70,10 +70,12 @@
 
 <div class="container">
     <br>
-    <img src="./static/img/figs/fig1.png" >
-    <p sytle="textalign:center;">
-        Fig. 1: Overview of the two-phase dynamics of interactions learned by a DNN.
-    </p>
+    <figure>
+        <img src="./static/img/figs/fig1.png" >
+        <figcaption>
+            Fig. 1: Overview of the two-phase dynamics of interactions learned by a DNN.
+        </figcaption>
+    </figure>
     <br>
 
     <h2>Abstract</h2>
@@ -169,17 +171,15 @@
         <ul>
             <li>
                 <p><b>Sparsity property:</b> A DNN only encodes a small number of salient interactions on a specific sample, while most interactions are noisy patterns with near-zero effects.</p>
-
-                <br>
-                <img src="./static/img/figs/theorem1.png" alt="">
-                <br>
+                
+                <img src="./static/img/figs/theorem1.png" alt="" style="width: 60%; height: auto;">
+                
             </li>
             <li>
                 <p><b>Universal matching property:</b> Given an input sample, the network output on a masked input sample can be well mimicked by the effects of specific interactions, no matter how we randomly mask this sample.</p>
 
-                <br>
                 <img src="./static/img/figs/theorem2.png" alt="">
-                <br>
+                
             </li>
 
             <li>
