@@ -72,7 +72,7 @@
     <br>
     <figure>
         <img src="./static/img/figs/fig1.png" >
-        <figcaption style="textalign:center;">
+        <figcaption  class="img-title">
             Fig. 1: Overview of the two-phase dynamics of interactions learned by a DNN.
         </figcaption>
     </figure>
@@ -159,7 +159,7 @@
 
         <img src="./static/img/figs/fig2.png" alt="Image description" style="width: 850px;">
 
-        <p>
+        <p class="img-title">
             Fig. 2: Illustration of AND-OR interactions encoded by a DNN.
         </p>
     </div>
@@ -171,14 +171,14 @@
         <ul>
             <li>
                 <p><b>Sparsity property:</b> A DNN only encodes a small number of salient interactions on a specific sample, while most interactions are noisy patterns with near-zero effects.</p>
-            </li> 
+            </li>
                 <img src="./static/img/figs/theorem1.png" alt="" style="width: 650px;">
-                            
+
             <li>
                 <p><b>Universal matching property:</b> Given an input sample, the network output on a masked input sample can be well mimicked by the effects of specific interactions, no matter how we randomly mask this sample.</p>
             </li>
                 <img src="./static/img/figs/theorem2.png" alt="" style="width: 650px;">
-                
+
             <li>
                 <p><b>Sample-wise/model-wise transferability property:</b> Salient interactions are transferable across different samples in the same category/different models trained for the same task.</p>
             </li>
@@ -190,7 +190,7 @@
     <h2>Observation: two-phase dynamics of interactions</h2>
     <div class="content has-text-justified">
         <img src="./static/img/figs/fig3.png" alt="Image description" style="width: 850px;">
-        <p>
+        <p class="img-title">
             Fig. 3: Illustration of the two-phase dynamics of interactions. The last column shows the temporal change of training-testing loss gap, which is roughly aligned with the two phases.
         </p>
         <br>
@@ -251,7 +251,7 @@
         </div>
 
 
-        <br>        
+        <br>
         <p>
             <b>Analytical solution.</b> We find that the theoretical interaction distribution   (derived from ) could well predict the real distribution  at different training epochs.
         </p>
@@ -274,7 +274,7 @@
         </div>
 
         <img src="./static/img/figs/fig4.png" alt="" style="width: 850px;">
-        <p>
+        <p class="img-title">
             Fig. 4: Comparison between the theoretical distribution of interaction strength  and the real distribution of interaction strength  in the second phase.
         </p>
     </div>
@@ -292,7 +292,7 @@
             other, while high-order interactions are dissimilar.
         </li>
         <img src="./static/img/figs/fig5.png" alt="Image description" style="width: 850px;">
-        <p>
+        <p class="img-title">
             Fig. 5: The Jaccard similarity between interactions extracted from training samples and interactions extracted from testing samples decreases significantly as the order grows.
         </p>
 
@@ -302,7 +302,7 @@
             <b>Evidence 2:</b> a DNN encodes more high-order interactions on OOD (mislabeled) samples than on normal samples.
         </li>
         <img src="./static/img/figs/fig6.png" alt="Image description" style="width: 850px;">
-        <p>
+        <p class="img-title">
             Fig. 6: The strength of high-order interactions on OOD samples is significantly greater than that on normal samples.
         </p>
         
